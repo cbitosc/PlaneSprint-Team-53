@@ -1,0 +1,39 @@
+{% extends 'basic.html' %} {% block title %}Dashboard {% endblock title %} {% block body %}
+{% load app_tags %}
+<div class="container-sm">
+    <h3 class="text-center text-center py-4">My Bookings </h3>
+</div>
+<div class="container container-sm">
+<table class="table">
+    <thead class="px-3">
+        <th>User</th>
+        <th>Room</th>
+        <th>Location</th>
+        <th>Person</th>
+        <th>Check in</th>
+        <th>Check out</th>
+        <th>Price</th>
+        <th>Download PDF<th>
+    </thead>
+    {% for each_booking in bookings %}
+    <tr>
+        <td>{{each_booking.guest.username}}</td>
+        <td>{{each_booking.room.roomnumber}}</td>
+        <td>{{each_booking.room.hotel.location}}</td>
+        <td>{{each_booking.room.capacity}}</td>
+        <td>{{each_booking.check_in}}</td>
+        <td>{{each_booking.check_out}}</td>
+        <td>{{each_booking.room.price}}</td>
+        <td>
+            <form action="">
+                <a href="{% url 'pdfdisplay' %}" target="_blank" type = 'submit' class="btn btn-primary">Download</a>
+            </form>
+              
+        <td>
+    </tr>
+    {% endfor %}
+
+
+</table>
+</div>
+{% endblock body %}
